@@ -17,7 +17,13 @@ import * as THREE from 'three';
 export default function MacbookModel14(props) {
   const {color} = useMacbookStore();
   const { nodes, materials, scene } = useGLTF('/models/macbook-14-transformed.glb');
-  const texture = useTexture('./screen.png');
+
+    const texture = useTexture('./screen.png');
+    // eslint-disable-next-line react-hooks/immutability
+    texture.colorSpace = THREE.SRGBColorSpace;
+    // eslint-disable-next-line react-hooks/immutability
+    texture.needsUpdate = true;
+
   useEffect(()=>{
     scene.traverse((child)=>{
       if(child.isMesh){
